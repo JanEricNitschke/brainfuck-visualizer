@@ -23,4 +23,4 @@ More information:
 - Eugene Sharygin ([eush77](https://github.com/eush77))
 
 ### Demo
-<http://fatiherikli.github.io/brainfuck-visualizer>
+<http://janericnitschke.github.io/brainfuck-visualizer>
