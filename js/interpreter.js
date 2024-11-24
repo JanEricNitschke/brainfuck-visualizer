@@ -30,6 +30,10 @@ var Interpreter = function (source, tape, pointer,
     };
     this.init = function() {
       for(var i = 0, pipe = false; i < source.length; i++) {
+        if (source[i] == '\n') {
+          pipe = false;
+        }
+
         if (pipe) {
           this.buffer += source[i];
         }
@@ -169,9 +173,6 @@ var Interpreter = function (source, tape, pointer,
           jumps.pop();
         }
         break; 
-      case "!":
-        tokens = "";
-        break;
     }
     return action++;
   }
