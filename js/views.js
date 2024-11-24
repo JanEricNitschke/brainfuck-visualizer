@@ -16,7 +16,7 @@ var PointerView = Backbone.View.extend({
         this.interpreter = options.interpreter;
     },
     render: function () {
-        this.$el.animate({
+        this.$el.stop(true, true).animate({
             "margin-left": this.model.get("index") * this.$el.width()
         }, 30);
         return this;
