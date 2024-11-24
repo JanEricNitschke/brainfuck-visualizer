@@ -25,7 +25,14 @@ var Cell = Backbone.Model.extend({
 });
 
 var Tape = Backbone.Collection.extend({
-    model: Cell
+    model: Cell,
+
+    resize: function(newSize) {
+        var newCells = _(newSize).times(function() {
+            return new Cell(); // Create new instances of Cell
+        });
+        this.set(newCells);
+    }
 });
 
 var Pointer = Backbone.Model.extend({

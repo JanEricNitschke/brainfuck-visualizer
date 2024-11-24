@@ -22,6 +22,12 @@
             </ul>
             <div class="pointer"><em></em></div>
         </section>
+        <section>
+            <div class="resize-controls">
+                <input id="cellCount" type="number" min="1" value="60" />
+                <button id="updateCells">Update Cells</button>
+            </div>
+        </section>
         <section class="editor">
             <div class="actions">
                 <a class="button" href="#" id="run">Run</a>
@@ -123,7 +129,7 @@
     </section>
 
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             var cells = _(60).times($.noop);
             var tape = new Tape(cells);
             var pointer = new Pointer();
@@ -132,6 +138,15 @@
                 tape: tape,
                 pointer: pointer
             }).render();
+            
+            $("#updateCells").on("click", function() {
+                var newSize = parseInt($("#cellCount").val(), 10);
+                if (!isNaN(newSize) && newSize > 0) {
+                    tape.resize(newSize);
+                } else {
+                    alert("Please enter a valid number.");
+                }
+            });
         });
     </script>
 

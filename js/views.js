@@ -28,8 +28,11 @@ var TapeView = Backbone.View.extend({
     initialize: function (options) {
         this.pointer = options.pointer;
         this.interpreter = options.interpreter;
+        this.listenTo(this.model, 'update reset add remove', this.render);
     },
     render: function () {
+        this.$el.empty();
+
         _.forEach(this.model.models, function (model) {
             this.$el.append((new CellView({
                 model: model
@@ -87,7 +90,6 @@ var InterpreterView = Backbone.View.extend({
       if (location.hash) {
         var bfCode = atob(location.hash.replace(/^#/, ""))
         this.editor.val(decodeURIComponent(bfCode));
-        _.defer(this.run.bind(this));
       }
     },
     showPreview: function () {
